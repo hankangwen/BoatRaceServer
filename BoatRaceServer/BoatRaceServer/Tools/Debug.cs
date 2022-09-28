@@ -6,7 +6,7 @@ namespace BoatRaceServer
     {
         public static bool enableLog = false;
         public static bool enableWarning = false;
-        public static bool enableError = false;
+        public static bool enableError = true;
 
         public static void Log(string text)
         {

@@ -2,7 +2,7 @@
 {
     public abstract class Singleton<T> : ISingleton where T : Singleton<T>
     {
-        protected static T mInstance;
+        private static T mInstance;
 
         static object mLock = new object();
 

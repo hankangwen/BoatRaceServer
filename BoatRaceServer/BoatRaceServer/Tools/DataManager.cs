@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 
 /* 以下注释为获取exe相对路径的办法
 // 获取模块的完整路径，包括文件名。
@@ -23,36 +24,7 @@ namespace BoatRaceServer.Tools
     public class DataManager : Singleton<DataManager>
     {
         DataManager() { }
-        
-        public override void OnSingletonInit()
-        {
-            
-        }
 
-        
-        public ConfigData GetConfigData()
-        {
-            List<string> config = ReadTextAsset("config");
-            Dictionary<string, string> dict = new Dictionary<string, string>(config.Count);
-            foreach (var line in config)
-            {
-                string[] result = line.Split(':');
-                string key = ToLower(result[0]);
-                string value = result[1];
-                dict.Add(key, value);
-            }
-            
-            ConfigData configData = new ConfigData(
-                dict["ip"],
-                int.Parse(dict["port"]), 
-                bool.Parse(dict["connect_db"]), 
-                bool.Parse(dict["debug_log"]), 
-                bool.Parse(dict["debug_warning"]), 
-                bool.Parse(dict["debug_error"])
-            );
-            return configData;
-        }
-        
         /// <summary>
         /// 将txt中的内容读取到列表data中, 路径相对于exe下的文件
         /// </summary>
