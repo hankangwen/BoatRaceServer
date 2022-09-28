@@ -14,7 +14,6 @@ namespace BoatRaceServer
             Console.WriteLine(configData.debug_log);
             Console.WriteLine(configData.debug_warning);
             Console.WriteLine(configData.debug_error);
-            
         }
         
     }
