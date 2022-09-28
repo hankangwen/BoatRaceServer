@@ -24,13 +24,13 @@ namespace BoatRaceServer.Tools
     {
         DataManager() { }
         
-        private ConfigData _configData; //对应Config.txt中的配置
         public override void OnSingletonInit()
         {
-            InitNetDate();
+            
         }
 
-        private void InitNetDate()
+        
+        public ConfigData GetConfigData()
         {
             List<string> config = ReadTextAsset("config");
             Dictionary<string, string> dict = new Dictionary<string, string>(config.Count);
@@ -42,19 +42,15 @@ namespace BoatRaceServer.Tools
                 dict.Add(key, value);
             }
             
-            _configData = new ConfigData(
+            ConfigData configData = new ConfigData(
                 dict["ip"],
                 int.Parse(dict["port"]), 
                 bool.Parse(dict["connect_db"]), 
                 bool.Parse(dict["debug_log"]), 
                 bool.Parse(dict["debug_warning"]), 
                 bool.Parse(dict["debug_error"])
-                );
-        }
-        
-        public ConfigData GetConfigData()
-        {
-            return _configData;
+            );
+            return configData;
         }
         
         /// <summary>
@@ -63,7 +59,7 @@ namespace BoatRaceServer.Tools
         public List<string> ReadTextAsset(string fileName, string suffix = ".txt")
         {
             string filePath = $"{AppDomain.CurrentDomain.BaseDirectory}{fileName}{suffix}";
-            Console.WriteLine($"Read file = {filePath}");
+            Debug.Log($"Read file = {filePath}");
             List<string> data = new List<string>();
             StreamReader sr = new StreamReader(filePath);
             string line = string.Empty;
@@ -82,7 +78,7 @@ namespace BoatRaceServer.Tools
         public void WriteTextAsset(List<string> data, string fileName, string suffix = ".txt")
         {
             string filePath = $"{AppDomain.CurrentDomain.BaseDirectory}{fileName}{suffix}";
-            Console.WriteLine($"Write file = {filePath}");
+            Debug.Log($"Write file = {filePath}");
             StreamWriter sw = new StreamWriter(filePath);
             for (int i = 0; i < data.Count; i++)
             {

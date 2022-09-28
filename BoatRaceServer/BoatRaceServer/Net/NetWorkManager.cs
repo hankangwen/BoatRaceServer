@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using BoatRaceServer.Tools;
 
 namespace BoatRaceServer.Net
@@ -7,8 +8,23 @@ namespace BoatRaceServer.Net
     {
         NetWorkManager() { }
 
-        
-        
-        
+        private EchoServer _echoServer;
+
+        public EchoServer CreateServer(string ip, int port)
+        {
+            _echoServer = new EchoServer(ip, port);
+            return _echoServer;
+        }
+
+        public EchoServer GetServer()
+        {
+            if (_echoServer == null)
+            {
+                Debug.LogError("Server is null, please call method CreateServer()");
+            }
+            return _echoServer;
+        }
+
+
     }
 }

@@ -39,13 +39,17 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Base\ObjectPool.cs" />
         <Compile Include="Base\Singleton.cs" />
         <Compile Include="Base\SingletonCreator.cs" />
+        <Compile Include="Net\ClientState.cs" />
+        <Compile Include="Net\EchoServer.cs" />
         <Compile Include="Net\NetWorkManager.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Tools\ConfigData.cs" />
         <Compile Include="Tools\DataManager.cs" />
+        <Compile Include="Tools\Debug.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
