@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using BoatRace;
 using BoatRaceServer.Tools;
 
 namespace BoatRaceServer.Net

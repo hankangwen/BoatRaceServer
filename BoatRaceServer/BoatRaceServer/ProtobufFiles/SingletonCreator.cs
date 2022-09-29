@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace BoatRaceServer
+namespace BoatRace
 {
     public interface ISingleton
     {

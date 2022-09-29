@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using BoatRacePb;
+using BoatRace;
 using BoatRaceServer.Tools;
 
 namespace BoatRaceServer.Net
@@ -89,20 +89,20 @@ namespace BoatRaceServer.Net
             }
 
             
-            // Test:转发给所有客户端
-            byte[] sendBytes = new byte[count];
-            Array.Copy(state.readBuff, 0, sendBytes, 0, count);
-            
-            
-            var obj = ProtobufUtil.Instance.BytesToObject<Hero>(sendBytes);
-            Console.WriteLine(obj.info.name);
-            
-            string str = Encoding.Default.GetString(sendBytes);
-            Console.WriteLine("Receive, client is {0}, msg = {1}", state.GetDesc(), str);
-            foreach (var client in clients.Values)
-            {
-                client.Send(sendBytes);
-            }
+            // // Test:转发给所有客户端
+            // byte[] sendBytes = new byte[count];
+            // Array.Copy(state.readBuff, 0, sendBytes, 0, count);
+            //
+            //
+            // var obj = ProtobufUtil.Instance.BytesToObject<Hero>(sendBytes);
+            // Console.WriteLine(obj.info.name);
+            //
+            // string str = Encoding.Default.GetString(sendBytes);
+            // Console.WriteLine("Receive, client is {0}, msg = {1}", state.GetDesc(), str);
+            // foreach (var client in clients.Values)
+            // {
+            //     client.Send(sendBytes);
+            // }
 
             return true;
         }

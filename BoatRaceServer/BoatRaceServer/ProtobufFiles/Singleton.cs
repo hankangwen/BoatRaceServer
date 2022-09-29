@@ -1,4 +1,4 @@
-﻿namespace BoatRaceServer
+﻿namespace BoatRace
 {
     public abstract class Singleton<T> : ISingleton where T : Singleton<T>
     {

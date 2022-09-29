@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using BoatRaceServer.Net;
 using BoatRaceServer.Tools;
-using BoatRacePb;
+using BoatRace;
 
 namespace BoatRaceServer
 {
@@ -46,6 +46,7 @@ namespace BoatRaceServer
             Debug.enableError = configData.debug_error;
         }
 
+        /*
         static void TestProtobuf()
         {
             ProtobufUtil pbUtil = ProtobufUtil.Instance; 
@@ -67,5 +68,6 @@ namespace BoatRaceServer
             var obj = pbUtil.BytesToObject<Hero>(result);
             Console.WriteLine(obj.job);
         }
+        */
     }
 }

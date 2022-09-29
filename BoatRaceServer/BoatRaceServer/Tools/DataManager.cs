@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using BoatRace;
 
 /* 以下注释为获取exe相对路径的办法
 // 获取模块的完整路径，包括文件名。

@@ -2,7 +2,7 @@
 using System.IO;
 using ProtoBuf;
 
-namespace BoatRaceServer.Tools
+namespace BoatRace
 {
     public class ProtobufUtil : Singleton<ProtobufUtil>
     {
