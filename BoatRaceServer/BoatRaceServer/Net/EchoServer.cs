@@ -35,10 +35,12 @@ namespace BoatRaceServer.Net
             while (true) {
                 checkRead.Clear();
                 checkRead.Add(listenfd);
+                // Foreach all client which is connected.
                 foreach (var client in clients.Values)
                 {
                     checkRead.Add(client.socket);
                 }
+                // Start select.
                 Socket.Select(checkRead, null, null, 1000);
                 foreach (var item in checkRead)
                 {

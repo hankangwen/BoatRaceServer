@@ -10,11 +10,13 @@ namespace BoatRaceServer
     {
         public static void Main(string[] args)
         {
-            ConfigData configData = GetConfigData();
-            InitDebugger(configData);
-            
-            EchoServer server = NetWorkManager.Instance.CreateServer(configData.ip, configData.port);
-            server.Start();
+            // // Server启动前的数据准备
+            // ConfigData configData = GetConfigData();
+            // InitDebugger(configData);
+            //
+            // // 启动Server
+            // EchoServer server = NetWorkManager.Instance.CreateServer(configData.ip, configData.port);
+            // server.Start();
         }
         
         static ConfigData GetConfigData()
@@ -40,6 +42,28 @@ namespace BoatRaceServer
             Debug.enableLog = configData.debug_log;
             Debug.enableWarning = configData.debug_warning;
             Debug.enableError = configData.debug_error;
+        }
+
+        static void TestProtobuf()
+        {
+            ProtobufUtil pbUtil = ProtobufUtil.Instance; 
+            Hero hero = new Hero
+            {
+                info = new Info
+                {
+                    age = 18,
+                    name = "小乔",
+                    sex = "女"
+                },
+                job = Hero.Job.Swords,
+                equip = new List<string>{"5","2","0"}
+            };
+            
+            var result = pbUtil.ObjectToBytes(hero);
+            Console.WriteLine(result.ToString());
+
+            var obj = pbUtil.BytesToObject<Hero>(result);
+            Console.WriteLine(obj.job);
         }
     }
 }
