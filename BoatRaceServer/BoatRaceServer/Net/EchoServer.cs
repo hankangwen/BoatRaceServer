@@ -25,9 +25,10 @@ namespace BoatRaceServer.Net
         public void Start()
         {
             listenfd = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            IPAddress ipAdr = IPAddress.Parse(_ip);
-            IPEndPoint ipEp = new IPEndPoint(ipAdr, this._port);
-            listenfd.Bind(ipEp);
+            // IPAddress ipAdr = IPAddress.Parse(_ip);
+            // IPEndPoint ipEp = new IPEndPoint(ipAdr, this._port);
+            // listenfd.Bind(ipEp);
+            listenfd.Bind(new IPEndPoint(IPAddress.Any, _port));
             listenfd.Listen(0);
             Debug.Log($"Server started, ip = {this._ip}, port = {this._port}");
 
