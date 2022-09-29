@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using BoatRaceServer.Net;
 using BoatRaceServer.Tools;
+using BoatRacePb;
 
 namespace BoatRaceServer
 {
@@ -10,13 +11,14 @@ namespace BoatRaceServer
     {
         public static void Main(string[] args)
         {
-            // // Server启动前的数据准备
-            // ConfigData configData = GetConfigData();
-            // InitDebugger(configData);
-            //
-            // // 启动Server
-            // EchoServer server = NetWorkManager.Instance.CreateServer(configData.ip, configData.port);
-            // server.Start();
+            // Server启动前的数据准备
+            ConfigData configData = GetConfigData();
+            InitDebugger(configData);
+            
+            // 启动Server
+            EchoServer server = NetWorkManager.Instance.CreateServer(configData.ip, configData.port);
+            server.Start();
+            
         }
         
         static ConfigData GetConfigData()

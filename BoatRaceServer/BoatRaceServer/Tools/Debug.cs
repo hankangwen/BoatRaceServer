@@ -4,8 +4,8 @@ namespace BoatRaceServer
 {
     public class Debug
     {
-        public static bool enableLog = false;
-        public static bool enableWarning = false;
+        public static bool enableLog = true;
+        public static bool enableWarning = true;
         public static bool enableError = true;
 
         public static void Log(string text)

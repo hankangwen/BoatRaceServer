@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using ProtoBuf;
 
-namespace BoatRaceServer
+namespace BoatRacePb
 {
     [ProtoContract]
     public class Hero
