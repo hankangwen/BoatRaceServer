@@ -1,0 +1,9 @@
+ip:127.0.0.1
+port:8888
+debug_log:true
+debug_warning:true
+debug_error:true
+develop_mode:true
+connect_db:true
+develop_db:123
+release_db:456
