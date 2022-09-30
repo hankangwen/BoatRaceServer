@@ -25,9 +25,7 @@ namespace BoatRaceServer.Net
         public void Start()
         {
             listenfd = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            // IPAddress ipAdr = IPAddress.Parse(_ip);
-            // IPEndPoint ipEp = new IPEndPoint(ipAdr, this._port);
-            // listenfd.Bind(ipEp);
+            // listenfd.Bind(new IPEndPoint(IPAddress.Parse(_ip), _port));
             listenfd.Bind(new IPEndPoint(IPAddress.Any, _port));
             listenfd.Listen(0);
             Debug.Log($"Server started, ip = {this._ip}, port = {this._port}");
@@ -89,23 +87,73 @@ namespace BoatRaceServer.Net
                 return false;
             }
 
+            // 接收端解析消息
             
-            // // Test:转发给所有客户端
+            
+            //byte[] bytes = state.readBuff;
+            //int readIdx = 0;
+            //Int16 bodyLength = (Int16)((bytes[readIdx + 1] << 8) | bytes[readIdx]);
+            //readIdx += 2;
+            //int nameCount = 0;
+            //string protoName = MsgBase.DecodeName(bytes, readIdx, out nameCount);
+            //if (protoName == "") {
+            //    Console.WriteLine("Receive 协议名 failed.");
+            //    return false;
+            //}
+
+            //readIdx += nameCount;
+            //// 解析协议体
+            //int bodyCount = bodyLength - nameCount;
+            //MsgBase msgBase = MsgBase.Decode(protoName, bytes, readIdx, bodyCount);
+            //readIdx += bodyCount;
+            //Console.WriteLine(msgBase.protoName);
+
+            //string funName = msgBase.protoName;
+
+            /*
+            // Deal with data.
+            string receiveStr = Encoding.Default.GetString(state.readBuff, 0, count);
+            Console.WriteLine("Receive : " + receiveStr);
+
+            // Use Reflection.
+            //string str = MsgBase.DecodeName()
+            string[] split = receiveStr.Split('|');
+            string msgName = split[0];
+            string msgArgs = split[1];
+            string funName = "Msg" + msgName;
+            MethodInfo method = typeof(MsgHandler).GetMethod(funName);
+            object[] o = { state, msgArgs };
+            method.Invoke(null, o);
+            */
+
+            //string sendStr = clientfd.RemoteEndPoint.ToString() + ":" + receiveStr;
+            //string sendStr = receiveStr;
+            //byte[] sendBytes = Encoding.Default.GetBytes(sendStr);
+            //// Sync data to all client.
+            ///
+            //foreach (var item in clients.Values)
+            //{
+            //    item.socket.Send(sendBytes);
+            //}
+            
+            
             // byte[] sendBytes = new byte[count];
             // Array.Copy(state.readBuff, 0, sendBytes, 0, count);
-            //
-            //
             // var obj = ProtobufUtil.Instance.BytesToObject<Hero>(sendBytes);
             // Console.WriteLine(obj.info.name);
-            //
-            // string str = Encoding.Default.GetString(sendBytes);
-            // Console.WriteLine("Receive, client is {0}, msg = {1}", state.GetDesc(), str);
-            // foreach (var client in clients.Values)
-            // {
-            //     client.Send(sendBytes);
-            // }
-
+            
             return true;
+        }
+
+        // eg:Fire2AllClient(sendBytes, clients[clientfd]);
+        public void Fire2AllClient(byte[] sendBytes, ClientState ignoreClient = null)
+        {
+            foreach (var client in clients.Values)
+            {
+                if(ignoreClient!= null && client == ignoreClient)
+                    continue;
+                client.Send(sendBytes);
+            }
         }
 
         public void CloseClient(Socket clientfd)

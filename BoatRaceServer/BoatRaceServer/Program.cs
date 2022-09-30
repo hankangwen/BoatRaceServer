@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using BoatRaceServer.Net;
 using BoatRaceServer.Tools;
 using BoatRace;
 
@@ -11,14 +9,18 @@ namespace BoatRaceServer
     {
         public static void Main(string[] args)
         {
+
+            TestProtobuf();
             // Server启动前的数据准备
-            ConfigData configData = GetConfigData();
-            InitDebugger(configData);
-            
-            // 启动Server
-            EchoServer server = NetWorkManager.Instance.CreateServer(configData.ip, configData.port);
-            server.Start();
-            
+            // ConfigData configData = GetConfigData();
+            // InitDebugger(configData);
+
+            // string ip = "0.0.0.0";
+            // int port = 8888;
+            // // 启动Server
+            // EchoServer server = NetWorkManager.Instance.CreateServer(ip, port);
+            // server.Start();
+
         }
         
         static ConfigData GetConfigData()
@@ -47,6 +49,7 @@ namespace BoatRaceServer
         }
 
         /*
+        */
         static void TestProtobuf()
         {
             ProtobufUtil pbUtil = ProtobufUtil.Instance; 
@@ -65,9 +68,11 @@ namespace BoatRaceServer
             var result = pbUtil.ObjectToBytes(hero);
             Console.WriteLine(result.ToString());
 
-            var obj = pbUtil.BytesToObject<Hero>(result);
+            //MsgBase msgBase = (MsgBase)Json.DeserializeClass(s, Type.GetType(protoName));
+            Type type = Type.GetType("BoatRace.Hero");
+            // var obj = pbUtil.BytesToObject<Hero>(result);
+            var obj = (Hero)pbUtil.BytesToObject(result, type);
             Console.WriteLine(obj.job);
         }
-        */
     }
 }

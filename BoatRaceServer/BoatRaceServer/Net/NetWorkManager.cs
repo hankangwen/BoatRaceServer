@@ -26,6 +26,22 @@ namespace BoatRaceServer.Net
             return _echoServer;
         }
 
+        private Dictionary<string, Action<byte[]>> _funcDict = new Dictionary<string, Action<byte[]>>();
+        // RegisterFuncName()
+        // UnRegisterFuncName()
+        public void RegisterFuncName(string msgName, Action<byte[]> func)
+        {
+            _funcDict.Add(msgName, func);
+        }
 
+        public void InvokeFunc(string name, byte[] array)
+        {
+            _funcDict[name]?.Invoke(array);
+        }
+        
+        void Login()
+        {
+            
+        }
     }
 }
